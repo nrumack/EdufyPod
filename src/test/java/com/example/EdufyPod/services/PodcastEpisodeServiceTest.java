@@ -93,7 +93,7 @@ public class PodcastEpisodeServiceTest {
 
         @Test
         void deleteEpisode_shouldDelete_whenExists() {
-        when(repository.existsById(episodeId)).thenReturn(false);
+        when(repository.existsById(episodeId)).thenReturn(true);
 
         service.deleteEpisode(episodeId);
 
@@ -102,29 +102,31 @@ public class PodcastEpisodeServiceTest {
 
         @Test
         void deleteEpisode_shouldThrow_whenNotFound() {
-        when(repository.existsById(episodeId)).thenReturn(true);
+            when(repository.existsById(episodeId)).thenReturn(false);
 
-        assertThrows(ResourceNotFoundException.class, () -> service.deleteEpisode(episodeId));
-        verify(repository, never()).deleteById(any());}
+            assertThrows(ResourceNotFoundException.class, () -> service.deleteEpisode(episodeId));
+            verify(repository, never()).deleteById(any());
+    }
+
 
         @Test
-        void getRandomEpisode_shouldReturnOne_whenListNotEmpty() {
-            List<PodcastEpisode> episodes = List.of(episode);
-            when(repository.findAll()).thenReturn(episodes);
-            when(mapper.toDTO(episode)).thenReturn(dto);
+            void getRandomEpisode_shouldReturnOne_whenListNotEmpty() {
+                List<PodcastEpisode> episodes = List.of(episode);
+                when(repository.findAll()).thenReturn(episodes);
+                when(mapper.toDTO(episode)).thenReturn(dto);
 
-            PodcastEpisodeDTO result = service.getRandomEpisode();
+                PodcastEpisodeDTO result = service.getRandomEpisode();
 
-            assertEquals(dto, result);
-            verify(repository).findAll();
-            verify(mapper).toDTO(episode);
-        }
+                assertEquals(dto, result);
+                verify(repository).findAll();
+                verify(mapper).toDTO(episode);
+    }
 
         @Test
         void getRandomEpisode_shouldThrow_whenListEmpty() {
             when(repository.findAll()).thenReturn(Collections.emptyList());
 
             assertThrows(ResourceNotFoundException.class, () -> service.getRandomEpisode());
-        }
+    }
 
 }

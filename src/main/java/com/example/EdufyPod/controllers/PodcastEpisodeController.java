@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/episodes")
+@RequestMapping("api/v1/podcast/episodes")
 public class PodcastEpisodeController {
 
     private final PodcastEpisodeService podcastEpisodeService;

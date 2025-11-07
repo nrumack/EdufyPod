@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>EdufyPod</artifactId>
+	<artifactId>podcast</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>EdufyPod</name>
 	<description>Edufiy Pod Microservice</description>
