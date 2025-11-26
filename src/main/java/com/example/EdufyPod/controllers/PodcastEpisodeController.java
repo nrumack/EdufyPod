@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("api/v1/podcast/episodes")
@@ -21,7 +20,7 @@ public class PodcastEpisodeController {
     }
 
     @GetMapping("/{id}/stream")
-    public ResponseEntity<PodcastEpisodeDTO> getEpisode(@PathVariable UUID id){
+    public ResponseEntity<PodcastEpisodeDTO> getEpisode(@PathVariable Long id){
         PodcastEpisodeDTO dto = podcastEpisodeService.getEpisodeById(id);
         return ResponseEntity.ok(dto);
     }
@@ -32,7 +31,7 @@ public class PodcastEpisodeController {
     }
 
     @PostMapping("/{id}/play")
-    public ResponseEntity<Void> playEpisode(@PathVariable UUID id){
+    public ResponseEntity<Void> playEpisode(@PathVariable Long id){
         podcastEpisodeService.increasePlayCount(id);
         return ResponseEntity.ok().build();
     }
@@ -50,7 +49,7 @@ public class PodcastEpisodeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEpisode(@PathVariable UUID id){
+    public ResponseEntity<String> deleteEpisode(@PathVariable Long id){
         podcastEpisodeService.deleteEpisode(id);
         return ResponseEntity.ok("episode deleted successfully");
     }

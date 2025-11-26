@@ -15,7 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -32,13 +32,13 @@ public class PodcastEpisodeServiceTest {
         @InjectMocks
         private PodcastEpisodeService service;
 
-        private UUID episodeId;
+        private Long episodeId;
         private PodcastEpisode episode;
         private PodcastEpisodeDTO dto;
 
         @BeforeEach
         void setUp() {
-        episodeId = UUID.randomUUID();
+        episodeId = ThreadLocalRandom.current().nextLong();
         episode = new PodcastEpisode();
         episode.setEpisodeId(episodeId);
         episode.setTitle("Test Episode");

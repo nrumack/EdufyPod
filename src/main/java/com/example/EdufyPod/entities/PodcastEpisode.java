@@ -6,13 +6,13 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
+@Table(name = "podcast_episode")
 public class PodcastEpisode {
     @Id
     @GeneratedValue
-    private UUID episodeId;
+    private Long episodeId;
 
     private String title;
     private String description;
@@ -44,7 +44,7 @@ public class PodcastEpisode {
     }
 
 
-    public PodcastEpisode(UUID episodeId, String title, String description, String audioUrl, Integer duration, LocalDate publishedDate, String host, String language, boolean explicit, Long playCount, List<String> guests, List<String> tags) {
+    public PodcastEpisode(Long episodeId, String title, String description, String audioUrl, Integer duration, LocalDate publishedDate, String host, String language, boolean explicit, Long playCount, List<String> guests, List<String> tags) {
         this.episodeId = episodeId;
         this.title = title;
         this.description = description;
@@ -59,11 +59,11 @@ public class PodcastEpisode {
         this.tags = tags;
     }
 
-    public UUID getEpisodeId() {
+    public Long getEpisodeId() {
         return episodeId;
     }
 
-    public void setEpisodeId(UUID episodeId) {
+    public void setEpisodeId(Long episodeId) {
         this.episodeId = episodeId;
     }
 

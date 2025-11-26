@@ -23,7 +23,7 @@ public class PodcastEpisodeService {
         this.podcastEpisodeMapper = podcastEpisodeMapper;
     }
 
-    public PodcastEpisodeDTO getEpisodeById(UUID id){
+    public PodcastEpisodeDTO getEpisodeById(Long id){
         PodcastEpisode episode = podcastEpisodeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Episode not found"));
         return podcastEpisodeMapper.toDTO(episode);
@@ -57,14 +57,14 @@ public class PodcastEpisodeService {
         podcastEpisodeRepository.save(existing);
     }
 
-    public void deleteEpisode(UUID id){
+    public void deleteEpisode(Long id){
         if(!podcastEpisodeRepository.existsById(id)){
             throw new ResourceNotFoundException("Episode with id: " + id + "not found");
         }
         podcastEpisodeRepository.deleteById(id);
     }
 
-    public void increasePlayCount(UUID id){
+    public void increasePlayCount(Long id){
         PodcastEpisode episode = podcastEpisodeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Episode with id: " + id + "not found"));
         episode.setPlayCount(episode.getPlayCount() + 1);

@@ -5,10 +5,9 @@ import jakarta.persistence.ElementCollection;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class PodcastEpisodeDTO {
-    private UUID episodeId;
+    private Long episodeId;
     private String title;
     private String description;
     private String audioUrl;
@@ -25,11 +24,11 @@ public class PodcastEpisodeDTO {
     @ElementCollection
     private List<String> tags = new ArrayList<>();
 
-    public UUID getEpisodeId() {
+    public Long getEpisodeId() {
         return episodeId;
     }
 
-    public void setEpisodeId(UUID episodeId) {
+    public void setEpisodeId(Long episodeId) {
         this.episodeId = episodeId;
     }
 
